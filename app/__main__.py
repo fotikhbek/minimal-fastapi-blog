@@ -12,6 +12,6 @@ app.include_router(router=post_router,prefix='/posts', tags=['posts'])
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="127.0.0.1", port=5000, reload=False)   
+    uvicorn.run("__main__:app", host="127.0.0.1", port=5000, reload=False)   
 
     

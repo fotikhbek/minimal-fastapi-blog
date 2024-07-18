@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED=1 \
     VENV_PATH=".venv"
 
 COPY certs/ certs/
-
+RUN pip freeze > requirements.txt
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
-COPY microblog microblog
+COPY ./app src 

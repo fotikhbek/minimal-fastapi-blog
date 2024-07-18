@@ -1,11 +1,9 @@
-import os
 from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from functools import lru_cache
 
-abs_path  = os.path.join(os.path.dirname(__file__), ".env")
-
 BASE_DIR = Path(__file__).parent.parent
+abs_path = BASE_DIR / '.env'
 
 
 class AuthJWT(BaseSettings):
