@@ -6,26 +6,20 @@ from sqlalchemy import update
 from sqlalchemy.ext.asyncio import AsyncSession
 from users.models import Users
 
+
 class UserDAL:
-    
     def __init__(self, db_session: AsyncSession):
         self.db_session = db_session
 
     async def create_user(
-        self,
-        username: str,
-        email: str,
-        hashed_password: str
+        self, username: str, email: str, hashed_password: str
     ) -> Users:
         new_user = Users(
-            username=username,
-            email=email,
-            hashed_password=hashed_password
+            username=username, email=email, hashed_password=hashed_password
         )
         self.db_session.add(new_user)
         await self.db_session.flush()
         return new_user
-
 
     async def delete_user(self, username) -> Union[id, None]:
         query = (
@@ -45,8 +39,7 @@ class UserDAL:
         user_row = res.fetchone()
         if user_row is not None:
             return user_row[0]
-    
-    
+
     async def get_user_by_username(self, username: str) -> Union[Users, None]:
         query = select(Users).where(Users.username == username)
         res = await self.db_session.execute(query)
@@ -65,5 +58,3 @@ class UserDAL:
         update_user_id_row = res.fetchone()
         if update_user_id_row is not None:
             return update_user_id_row[0]
-
-    

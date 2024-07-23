@@ -21,7 +21,7 @@ class UserSchema(BaseModel):
 
     username: str
     password: str
-    email: EmailStr 
+    email: EmailStr
     is_active: bool = True
     is_superuser: bool = False
 
@@ -32,5 +32,3 @@ class DeleteUserResponse(BaseModel):
 
 class UpdatedUserResponse(BaseModel):
     updated_user: str
-
-    
