@@ -1,15 +1,11 @@
 
-networks:
-  app-network:
-    external: true
-
 services:
   web: 
     build: .
     volumes:
       - ./:/usr/src 
-    working_dir: microblog/
-    command: sh -c 'alembic upgrade head && python -m src'
+    working_dir: /usr/src
+    command: sh -c 'alembic upgrade head && cd app && python __main__.py'
     networks:
       - app-network
     ports:
@@ -32,4 +28,8 @@ services:
     networks:
       - app-network
     ports:
-      - '25432:5432'
+      - '5432:5432'
+
+networks:
+  app-network:
+    external: true
